@@ -18,8 +18,8 @@ setup(
   long_description=README,
   author = 'Nilesh Verma',                   
   author_email = 'me@nileshverma.com',     
-  url = 'https://github.com/kevinn-raj/DeepImageSearch',
-  # download_url = 'https://github.com/TechyNilesh/DeepImageSearch/archive/refs/tags/v_25.tar.gz',    
+  url = 'https://github.com/TechyNilesh/DeepImageSearch',
+  download_url = 'https://github.com/TechyNilesh/DeepImageSearch/archive/refs/tags/v_25.tar.gz',    
   keywords = ['Deep Image Search Engine', 'AI Image search', 'Image Search Python'],   
   install_requires=[        
           'faiss_cpu',
