@@ -201,11 +201,23 @@ class Search_Setup:
         print(f"\033[92m New images added to the index: {len(new_image_paths)}")
 
     def _search_by_vector(self, v, n: int):
+        """
+        Returns a dict of {index: {path: $value, distance: $value}}
+        """
         self.v = v
         self.n = n
         index = faiss.read_index(config.image_features_vectors_idx(self.model_name))
         D, I = index.search(np.array([self.v], dtype=np.float32), self.n)
-        return dict(zip(I[0], self.image_data.iloc[I[0]]['images_paths'].to_list()))
+        
+        # Original
+        # return dict(zip(I[0], self.image_data.iloc[I[0]]['images_paths'].to_list()))
+
+        # Added the distances
+        return dict(zip(I[0],
+                        [dict(path=ind, distance=d) for ind, d in
+                         zip(self.image_data.iloc[I[0]]['images_paths'].to_list(), D[0])
+                        ]
+                         ))
 
     def _get_query_vector(self, image_path: str):
         self.image_path = image_path
